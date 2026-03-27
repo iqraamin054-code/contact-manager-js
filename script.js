@@ -43,15 +43,6 @@ const contactManager = {
         return this.contacts.splice(input,1);
     },
 
-    searchContact: function(userName){
-
-    },
-
-    exit: function(){
-
-        
-        
-    }
 }
 
 
@@ -112,12 +103,12 @@ const userInput = (input) => {
                     }
                 }
 
-    if(input === 2){
+    else if(input === 2){
             
         contactManager.viewContacts();
     }
 
-    if(input === 3){
+    else if(input === 3){
 
         if(contactManager.contacts.length === 0){
 
@@ -168,7 +159,7 @@ const userInput = (input) => {
             }
         }
 
-        if (input === 4){
+        else if (input === 4){
 
             if(contactManager.contacts.length === 0){
 
@@ -200,12 +191,15 @@ const userInput = (input) => {
 
                 }
             }
-            
-            return alert(contactList);
+            if (contactList === "") {
+                alert("No contact found");           
+            }else{
+                alert(contactList);
+            }
         } 
     }
 
-    if(input === 5){
+    else{
 
         contactManager.exit();
         return "Exit";
@@ -221,7 +215,7 @@ while(true){
     let contactList = showInfo(contactManager.contacts);
 
 
-    let updatedList = contactManager.contacts.length === 0? "No task available":`Your Tasks:\n ${contactList}`;
+    let updatedList = contactManager.contacts.length === 0? "No contacts available":`Your Tasks:\n ${contactList}`;
 
     let showOptions = `\nEnter your choice:\n1. Add Contact\n2. View All Contacts\n3. Delete Contact\n4. Search Contact\n5. Exit`
 
