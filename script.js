@@ -29,12 +29,12 @@ const contactManager = {
     viewContacts: function(){
 
          if (this.contacts.length === 0){
-            alert ("No contact available.");
+            alert ("No contacts available.");
 
         }else{
 
             let contactList = showInfo(this.contacts);
-            alert(`Your Contacts:\n ${contactList}`);
+            alert(`Your Contacts:\n${contactList}`);
         }    
     },
 
@@ -68,8 +68,8 @@ const userInput = (input) => {
 
             return alert("Error: Number cannot be used as name");
                       
-        } 
-            
+        }
+        
         let phoneNumber = prompt("Enter your phoneNumber:");
 
         // !phoneNumber check for both null and empty string
@@ -112,13 +112,13 @@ const userInput = (input) => {
 
         if(contactManager.contacts.length === 0){
 
-            alert("No contact available");
+            alert("No contacts available");
             return;
 
         }
 
        let contactList = showInfo(contactManager.contacts);
-        let value = prompt(`${contactList}\nEnter the number of the task you want to remove:`);
+        let value = prompt(`${contactList}\nEnter the number of the contact you want to remove:`);
 
         if(value === null || value.trim() === ""){
 
@@ -138,7 +138,7 @@ const userInput = (input) => {
             
         } else if (removeContact < 1 || removeContact > contactManager.contacts.length) {
 
-            alert("Error: That task number doesn't exist in your list."); 
+            alert("Error: That contact number doesn't exist in your list."); 
             
         }else{
 
@@ -163,7 +163,7 @@ const userInput = (input) => {
 
             if(contactManager.contacts.length === 0){
 
-                alert("No contact available");
+                alert("No contacts available");
                 return;
 
             }
@@ -180,11 +180,14 @@ const userInput = (input) => {
                 
             }else{
 
+                let result = searchInfo.trim().toLowerCase();
+                
+
             let counter = 1;
             let contactList = "";
             for(let info of contactManager.contacts){
 
-                if(searchInfo === info.userName){
+                if (info.userName.toLowerCase().includes(result)){
 
                 contactList += `${counter}. ${info.userName}-${info.phoneNumber}\n`;
                 counter ++;
@@ -192,16 +195,15 @@ const userInput = (input) => {
                 }
             }
             if (contactList === "") {
-                alert("No contact found");           
+                alert("No contacts found");           
             }else{
-                alert(contactList);
+                alert(`Your search result\n${contactList}`);
             }
         } 
     }
 
     else{
 
-        contactManager.exit();
         return "Exit";
 
     }
@@ -215,7 +217,7 @@ while(true){
     let contactList = showInfo(contactManager.contacts);
 
 
-    let updatedList = contactManager.contacts.length === 0? "No contacts available":`Your Tasks:\n ${contactList}`;
+    let updatedList = contactManager.contacts.length === 0? "No contacts available":`Your Contacts:\n${contactList}`;
 
     let showOptions = `\nEnter your choice:\n1. Add Contact\n2. View All Contacts\n3. Delete Contact\n4. Search Contact\n5. Exit`
 
