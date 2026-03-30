@@ -7,7 +7,7 @@ const showInfo = (contacts) => {
             let contactList = "";
             for(let info of contacts){
 
-                contactList += `${counter}. ${info.userName}-${info.phoneNumber}\n`;
+                contactList += `${counter}. ${info.userName}- ${info.phoneNumber}\n`;
                 
                 counter ++;
             }
@@ -17,14 +17,14 @@ const showInfo = (contacts) => {
         }
 
 // validation for string
-const validateName = (input) =>{
+const validateName = (userName) =>{
 
-    if(input === null || input.trim() === ""){
+    if(userName === null || userName.trim() === ""){
 
         return "You did not enter anything";
 
     }
-    if (!isNaN(input)) {
+    if (!isNaN(userName)) {
 
         return "Error: Number cannot be used as name";
 
@@ -34,26 +34,43 @@ const validateName = (input) =>{
 }
 
 // validation for number
-const validateNumber = (input) =>{
+const validateNumber = (number) =>{
 
-     if(input === null || input.trim() === ""){
-        
+    if(number === null || number.trim() === ""){
         return "You did not enter anything";
-                               
-    }else if (isNaN(input)) {
-
-        return "Error: letter cannot be used in phone number";
-      
-    }else{
-
-    let value = Number(input);
-
-    if (!Number.isInteger(value)) {
-                 
-        return alert("Error: phone number must be in integer (not decimal)");
-
-        }
     }
+
+    let numValue = Number(number)
+
+    if (isNaN(numValue)) {
+        return "Invalid Input";
+    }
+
+    if(!Number.isInteger(numValue)){
+        return "Error: number must contain digits only)"
+    }
+
+    return null;
+
+    }
+    
+// validate phone number
+
+const validatePhone = (phoneNumber) => {
+
+    let numError = validateNumber(phoneNumber);
+
+        if(numError !== null){
+            return (numError);
+        }
+   
+    if (phoneNumber.trim().length !== 10) {
+
+        return "Error: phone number length must be 10";
+
+    }
+    
+    return null;
 }
 
 
@@ -102,52 +119,36 @@ const userInput = (input) => {
     if(input === 1){
 
         let userName = prompt("Enter your name:");
+    
+         let nameError = validateName(userName);
 
-        
-         let error = validateName(userName);
-
-        if (error !== null) {
-            alert(error); 
+        if (nameError !== null) {
+            alert(nameError); 
             return;
-        }   
+        } 
+        
+        userName = userName.trim();
          
         let phoneNumber = prompt("Enter your phoneNumber:");
 
-        // !phoneNumber check for both null and empty string
+        let phoneError = validatePhone(phoneNumber);
 
-            if(phoneNumber === null || phoneNumber.trim() === ""){
-                return alert("You did not enter anything");
-                               
-            }else if (isNaN(phoneNumber)) {
+        if(phoneError !== null){
+            alert(phoneError);
+            return;
+        }
 
-                return alert("Error: letter cannot be used in phone number");
-      
-            }else if (phoneNumber.length !== 10) {
+        phoneNumber = phoneNumber.trim();
 
-                 return alert("Error: phone number length must be 10");
-
-                }
-
-                let userPhoneNumber = Number(phoneNumber);
-
-                if (!Number.isInteger(userPhoneNumber)) {
-                 
-                    return alert("Error: phone number must be in integer (not decimal)");
-
-                }
-
-                     validateName(userName);
+        let message = confirm("Do you want to add this name and phone number");
                 
-                    let message = confirm("Do you want to add this name and phone number");
-                
-                    if (message){
-                        contactManager.addContact(userName,userPhoneNumber);
-                        alerSt("Contact added successfully");
-                    }
+        if (message){
+            contactManager.addContact(userName, phoneNumber);
+            alert("Contact added successfully");
+        }
              
-            }
-        
-            
+    }
+                   
         
     // VIEW CONTACTS
 
@@ -167,26 +168,20 @@ const userInput = (input) => {
 
         }
 
-       let contactList = showInfo(contactManager.contacts);
-        let value = prompt(`${contactList}\nEnter the number of the contact you want to remove:`);
+        let contactList = showInfo(contactManager.contacts);
+        let indexInput = prompt(`${contactList}\nEnter the number of the contact you want to remove:`);
 
-        if(value === null || value.trim() === ""){
+        let idxError = validateNumber(indexInput);
 
-           return alert("You did not enter anything");
-
+        if(idxError !== null){
+            alert(idxError);
+            return;
         }
-          
-        let removeContact = Number(value);
+        
 
-        if(isNaN(removeContact)){
+        let removeContact = Number(indexInput);
 
-            return alert("Invalid Input");
-
-        }else if (!Number.isInteger(removeContact)) {
-
-            return alert("Error: number must be in integer (not decimal)");
-            
-        } else if (removeContact < 1 || removeContact > contactManager.contacts.length) {
+       if (removeContact < 1 || removeContact > contactManager.contacts.length) {
 
             alert("Error: That contact number doesn't exist in your list."); 
             
@@ -199,7 +194,7 @@ const userInput = (input) => {
                 if (message){
 
                     contactManager.deleteContact(index);
-                    return alert("Contacts are succesfully removed");
+                    return alert("Contact removed successfully");
 
                 }else{
 
@@ -222,37 +217,34 @@ const userInput = (input) => {
 
             let searchInfo = prompt("Enter the name");
 
-            if(searchInfo === null || searchInfo.trim() === ""){
+            let searchError = validateName(searchInfo);
 
-                return alert("You did not enter anything");
+            if (searchError !== null) {
+             alert(searchError); 
+            return;
+            }   
 
-            }else if (!isNaN(searchInfo)) {
-
-                return alert("Invalid input: number cannot be used as name ");
+            let result = searchInfo.trim().toLowerCase();
                 
-            }else{
-
-                let result = searchInfo.trim().toLowerCase();
-                
-
             let counter = 1;
-            let contactList = "";
-            for(let info of contactManager.contacts){
+            let searchResult = "";
+            for(let contact of contactManager.contacts){
 
-                if (info.userName.toLowerCase().includes(result)){
+                if (contact.userName.toLowerCase().includes(result)){
 
-                contactList += `${counter}. ${info.userName}-${info.phoneNumber}\n`;
+                searchResult += `${counter}. ${contact.userName}-${contact.phoneNumber}\n`;
                 counter ++;
 
                 }
             }
-            if (contactList === "") {
-                alert("No contacts found");           
-            }else{
-                alert(`Your search result\n${contactList}`);
-            }
+            
+                if (searchResult === "") {
+                    alert("No contacts found");           
+                }else{
+                    alert(`Your search result\n\n${searchResult}`);
+                }
         } 
-    }
+    
 
     // EXIT
 
