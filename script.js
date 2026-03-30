@@ -15,7 +15,50 @@ const showInfo = (contacts) => {
            return contactList;
 
         }
+
+// validation for string
+const validateName = (input) =>{
+
+    if(input === null || input.trim() === ""){
+
+        return "You did not enter anything";
+
+    }
+    if (!isNaN(input)) {
+
+        return "Error: Number cannot be used as name";
+
+    }
+    return null;
+
+}
+
+// validation for number
+const validateNumber = (input) =>{
+
+     if(input === null || input.trim() === ""){
         
+        return "You did not enter anything";
+                               
+    }else if (isNaN(input)) {
+
+        return "Error: letter cannot be used in phone number";
+      
+    }else{
+
+    let value = Number(input);
+
+    if (!Number.isInteger(value)) {
+                 
+        return alert("Error: phone number must be in integer (not decimal)");
+
+        }
+    }
+}
+
+
+
+
 
 const contactManager = {
     contacts: [],
@@ -54,22 +97,20 @@ const userInput = (input) => {
         return;
     }
 
+// ADD CONTACT
+
     if(input === 1){
 
         let userName = prompt("Enter your name:");
- 
-        // !username check for both null and empty string
+
         
-        if(userName === null || userName.trim() === ""){
+         let error = validateName(userName);
 
-            return alert("You did not enter anything");
-
-        }else if (!isNaN(userName)) {
-
-            return alert("Error: Number cannot be used as name");
-                      
-        }
-        
+        if (error !== null) {
+            alert(error); 
+            return;
+        }   
+         
         let phoneNumber = prompt("Enter your phoneNumber:");
 
         // !phoneNumber check for both null and empty string
@@ -94,19 +135,28 @@ const userInput = (input) => {
                     return alert("Error: phone number must be in integer (not decimal)");
 
                 }
+
+                     validateName(userName);
                 
                     let message = confirm("Do you want to add this name and phone number");
                 
                     if (message){
                         contactManager.addContact(userName,userPhoneNumber);
-                        alert("Contact added successfully");
+                        alerSt("Contact added successfully");
                     }
-                }
+             
+            }
+        
+            
+        
+    // VIEW CONTACTS
 
     else if(input === 2){
             
         contactManager.viewContacts();
     }
+
+    // REMOVE CONTACT
 
     else if(input === 3){
 
@@ -159,6 +209,8 @@ const userInput = (input) => {
             }
         }
 
+        // SEARCH CONTACTS
+
         else if (input === 4){
 
             if(contactManager.contacts.length === 0){
@@ -201,6 +253,8 @@ const userInput = (input) => {
             }
         } 
     }
+
+    // EXIT
 
     else{
 
