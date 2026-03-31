@@ -47,7 +47,7 @@ const validateNumber = (number) =>{
     }
 
     if(!Number.isInteger(numValue)){
-        return "Error: number must contain digits only)"
+        return "Error: number must contain digits only"
     }
 
     return null;
@@ -198,7 +198,7 @@ const userInput = (input) => {
 
                 }else{
 
-                    alert("deletion is cancelled");
+                    alert("Deletion cancelled");
 
                 }
             }
@@ -232,7 +232,7 @@ const userInput = (input) => {
 
                 if (contact.userName.toLowerCase().includes(result)){
 
-                searchResult += `${counter}. ${contact.userName}-${contact.phoneNumber}\n`;
+                searchResult += `${counter}. ${contact.userName}- ${contact.phoneNumber}\n`;
                 counter ++;
 
                 }
