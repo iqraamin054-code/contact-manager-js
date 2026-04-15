@@ -17,6 +17,7 @@ const showInfo = (contacts) => {
         }
 
 // validation for string
+
 const validateName = (userName) =>{
 
     if(userName === null || userName.trim() === ""){
@@ -60,7 +61,7 @@ const validatePhone = (phoneNumber) => {
 
     let numError = validateNumber(phoneNumber);
 
-    if(numError !== null){  //
+    if(numError !== null){  
         return (numError);
     }
    
@@ -104,7 +105,18 @@ const contactManager = {
         }
 
         this.contacts.splice(index, 1);
-}
+},
+
+    saveContacts: function(){
+
+        localStorage.setItem("contacts", JSON.stringify(this.contacts));
+    },
+
+    loadContacts: function(){
+
+        this.contacts = JSON.parse(localStorage.getItem("contacts")) || [];
+
+    }
 
 }
 
@@ -116,6 +128,7 @@ const userInput = (input) => {
         alert("Invalid Input");
         return;
     }
+    
 
 // ADD CONTACT
 
@@ -125,39 +138,35 @@ const userInput = (input) => {
             
         let userName = prompt("Enter your name:");
     
-       /*  let nameError = validateName(userName);
+        let nameError = validateName(userName);
 
         if (nameError !== null) {
             alert(nameError); 
             return;
-        }  */
+        } 
         
         userName = userName.trim();
          
         let phoneNumber = prompt("Enter your phoneNumber:");
 
-        /* let phoneError = validatePhone(phoneNumber);
+        let phoneError = validatePhone(phoneNumber);
 
         if(phoneError !== null){
             alert(phoneError);
             return;
-        } */
+        }
 
         phoneNumber = phoneNumber.trim();
 
         let message = confirm("Do you want to add this name and phone number");
           
-    try{
-         if (!message){
-            throw new Error("User cancelled the operation");
-        }
+         if (message){
 
-        contactManager.addContact(userName, phoneNumber);
-        alert("Contact added successfully");
-
-    }catch(error){
-        alert("Something went wrong: " + error.message);
-    }
+            contactManager.addContact(userName, phoneNumber)
+            contactManager.saveContacts();
+            return alert("Contact added successfully"); 
+                
+            }
 
 }catch(error){
     alert(error.message);
@@ -209,24 +218,19 @@ const userInput = (input) => {
             let index = removeContact - 1;
 
              let message = confirm("Do you want to remove this contact");
-
-
-            try {
-                if (!message){
-                    throw new Error("User cancelled the operation");
-                 }
-
+          
+            if (message){
                 contactManager.deleteContact(index);
-                alert("Contact removed successfully");
-
-            }catch (error) {
-                alert("Something went wrong: " + error.message);
-                }               
-            }
-        } catch (error) {
-            alert(error.message);
-        }
+                contactManager.saveContacts();
+                return alert("Contact removed successfully");
+            }else{ 
+                alert("Deletion cancelled"); 
+            }           
+        } 
+    }catch (error) {
+        alert(error.message);
     }
+}
 
     // SEARCH CONTACTS
 
@@ -282,14 +286,15 @@ const userInput = (input) => {
 
 }
 
-        
-
+contactManager.loadContacts();
+  
 while(true){
+
 
     let contactList = showInfo(contactManager.contacts);
 
 
-    let updatedList = contactManager.contacts.length === 0? "No contacts available":`Your Contacts:\n${contactList}`;
+    let updatedList = contactManager.contacts.length === 0? "No contacts available":`Your Contacts:\n${contactList}`; 
 
     let showOptions = `\nEnter your choice:\n1. Add Contact\n2. View All Contacts\n3. Delete Contact\n4. Search Contact\n5. Exit`
 
