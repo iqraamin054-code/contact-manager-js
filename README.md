@@ -48,19 +48,22 @@ This project was built as part of my learning journey to:
 - JavaScript fundamentals
 - Arrays and objects manipulation
 - CRUD operations (Create, Read, Delete)
-- Input validation
+- Input validation with reusable functions
+- Error handling using try-catch
 - Problem-solving and logic building
-- User interaction using prompt/alert
+- User interaction using prompt() and alert()
+- Basic Git & GitHub workflow (branching, commits, pull requests)
 
 ---
 
 ## 🔮 Future Improvements
 
 - Add a graphical user interface (UI) using DOM
-- Store data using local storage (JSON)
-- Implement flexible search (case-insensitive and partial match)
-- Improve validation using reusable functions
-- Enhance overall user experience
+- Store data persistently using localStorage and JSON
+- Refactor code using higher-order functions (map, filter, find)
+- Improve UI/UX with better interaction and design
+- Add edit/update contact functionality
+- Make the application fully responsive
 
 ---
 
