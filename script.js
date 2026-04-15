@@ -60,9 +60,9 @@ const validatePhone = (phoneNumber) => {
 
     let numError = validateNumber(phoneNumber);
 
-        if(numError !== null){
-            return (numError);
-        }
+    if(numError !== null){  //
+        return (numError);
+    }
    
     if (phoneNumber.trim().length !== 10) {
 
@@ -75,16 +75,16 @@ const validatePhone = (phoneNumber) => {
 
 
 
-
-
 const contactManager = {
     contacts: [],
 
-    addContact: function(userName,phoneNumber){
+    addContact: function(userName, phoneNumber){
+        if (!userName || !phoneNumber) {
+            throw new Error("Invalid contact data");
+        }
 
-        return this.contacts.push({userName,phoneNumber});
-
-    },
+        this.contacts.push({userName, phoneNumber});
+},
 
     viewContacts: function(){
 
@@ -98,10 +98,13 @@ const contactManager = {
         }    
     },
 
-    deleteContact: function(input){
+    deleteContact: function(index){
+        if (index < 0 || index >= this.contacts.length) {
+            throw new Error("Invalid contact index");
+        }
 
-        return this.contacts.splice(input,1);
-    },
+        this.contacts.splice(index, 1);
+}
 
 }
 
@@ -118,38 +121,50 @@ const userInput = (input) => {
 
     if(input === 1){
 
+        try {
+            
         let userName = prompt("Enter your name:");
     
-         let nameError = validateName(userName);
+       /*  let nameError = validateName(userName);
 
         if (nameError !== null) {
             alert(nameError); 
             return;
-        } 
+        }  */
         
         userName = userName.trim();
          
         let phoneNumber = prompt("Enter your phoneNumber:");
 
-        let phoneError = validatePhone(phoneNumber);
+        /* let phoneError = validatePhone(phoneNumber);
 
         if(phoneError !== null){
             alert(phoneError);
             return;
-        }
+        } */
 
         phoneNumber = phoneNumber.trim();
 
         let message = confirm("Do you want to add this name and phone number");
-                
-        if (message){
-            contactManager.addContact(userName, phoneNumber);
-            alert("Contact added successfully");
+          
+    try{
+         if (!message){
+            throw new Error("User cancelled the operation");
         }
-             
+
+        contactManager.addContact(userName, phoneNumber);
+        alert("Contact added successfully");
+
+    }catch(error){
+        alert("Something went wrong: " + error.message);
     }
-                   
-        
+
+}catch(error){
+    alert(error.message);
+}
+             
+}
+                          
     // VIEW CONTACTS
 
     else if(input === 2){
@@ -160,6 +175,10 @@ const userInput = (input) => {
     // REMOVE CONTACT
 
     else if(input === 3){
+
+        try {
+            
+       
 
         if(contactManager.contacts.length === 0){
 
@@ -190,41 +209,46 @@ const userInput = (input) => {
             let index = removeContact - 1;
 
              let message = confirm("Do you want to remove this contact");
-                
-                if (message){
 
-                    contactManager.deleteContact(index);
-                    return alert("Contact removed successfully");
 
-                }else{
+            try {
+                if (!message){
+                    throw new Error("User cancelled the operation");
+                 }
 
-                    alert("Deletion cancelled");
+                contactManager.deleteContact(index);
+                alert("Contact removed successfully");
 
-                }
+            }catch (error) {
+                alert("Something went wrong: " + error.message);
+                }               
             }
+        } catch (error) {
+            alert(error.message);
+        }
+    }
+
+    // SEARCH CONTACTS
+
+    else if (input === 4){
+
+        if(contactManager.contacts.length === 0){
+
+            alert("No contacts available");
+            return;
+
         }
 
-        // SEARCH CONTACTS
+        let searchInfo = prompt("Enter the name");
 
-        else if (input === 4){
+        let searchError = validateName(searchInfo);
 
-            if(contactManager.contacts.length === 0){
-
-                alert("No contacts available");
-                return;
-
-            }
-
-            let searchInfo = prompt("Enter the name");
-
-            let searchError = validateName(searchInfo);
-
-            if (searchError !== null) {
-             alert(searchError); 
+        if (searchError !== null) {
+            alert(searchError); 
             return;
-            }   
+        }   
 
-            let result = searchInfo.trim().toLowerCase();
+        let result = searchInfo.trim().toLowerCase();
                 
             let counter = 1;
             let searchResult = "";
@@ -238,12 +262,12 @@ const userInput = (input) => {
                 }
             }
             
-                if (searchResult === "") {
-                    alert("No contacts found");           
-                }else{
-                    alert(`Your search result\n\n${searchResult}`);
-                }
-        } 
+            if (searchResult === "") {
+                alert("No contacts found");           
+            }else{
+                alert(`Your search result\n\n${searchResult}`);
+            }
+    } 
     
 
     // EXIT
@@ -253,6 +277,8 @@ const userInput = (input) => {
         return "Exit";
 
     }
+
+       
 
 }
 
@@ -267,20 +293,20 @@ while(true){
 
     let showOptions = `\nEnter your choice:\n1. Add Contact\n2. View All Contacts\n3. Delete Contact\n4. Search Contact\n5. Exit`
 
-const value = prompt(updatedList + showOptions);
+    const value = prompt(updatedList + showOptions);
 
-if (value === null || value.trim() === ""){
-    console.log("Exiting out of system");
-    break;
-}else{
-    let input = Number(value);
-
-    let result = userInput(input);
-
-    if (result === "Exit") {
+    if (value === null || value.trim() === ""){
         console.log("Exiting out of system");
         break;
-    }
+    }else{
+        let input = Number(value);
+
+        let result = userInput(input);
+
+        if (result === "Exit") {
+            console.log("Exiting out of system");
+            break;
+        }
 
     let userRequest = confirm("Do you want to continue?");
     if(userRequest === false){
