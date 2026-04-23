@@ -8,10 +8,73 @@
 </head>
 <body>
 
-    <h1>Contact Manager Project</h1>
+    <header>
 
-    <p>A program where a user can manage contacts.</p>
+        <h1>Contact Manager Project</h1>
 
+        <p>A program where a user can manage contacts.</p>
+
+    </header>
+
+   <main>
+
+        <form id="contact_form">
+
+            <fieldset>
+                <legend>Add Information</legend>
+
+                <p>
+                    <label for="user_name">User Name</label>
+                    <input type="text" name="userName" id="user_name" placeholder="Enter your name" autocomplete="on" autofocus>
+                </p>
+
+                <p>
+                    <label for="phone_number">Phone Number</label>
+                    <input type="tel" name="phoneNumber" id="phone_number" placeholder="03XXXXXXXXX" pattern="03[0-9]{9}">
+                </p>
+
+                <button id="button1" type="button">Add</button>
+
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Search Contact</legend>
+
+               <p>
+                    <label for="search_name">User Name</label>
+                    <input type="text" name="userName" id="search_name" placeholder="Enter your name" autocomplete="on" >
+                </p>
+
+                <button id="search-btn" type="button">Search</button>
+                
+            </fieldset>
+
+            <fieldset>
+                <legend>Contact list</legend>
+
+                <h2>Your Contacts</h2>
+                <ol id="contact_list"></ol>
+                
+                
+            </fieldset>
+
+            <fieldset>
+                <legend>Show list</legend>
+
+                <button id="show_all">Show All</button>
+                   
+            </fieldset>
+
+
+
+        </form>
+
+
+
+    </main>
+
+ 
     <script src="script.js"></script>
     
 </body>
