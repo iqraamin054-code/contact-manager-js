@@ -9,26 +9,27 @@ A simple Contact Manager built using JavaScript that allows users to manage cont
 - Add new contacts
 - View all contacts
 - Delete existing contacts
-- Search contacts by name
+- Search contacts by name (case-insensitive + partial match)
+- Show all contacts after filtering
 - Input validation for user data
+- Data persistence using LocalStorage
 
 ---
 
-## 🛠️ Tech Used
+## 🖥️ Tech Used
 
+- HTML
 - JavaScript (Vanilla JS)
+- Browser LocalStorage
 
 ---
 
 ## 💡 How It Works
 
-This project uses:
-
-- prompt() for user input
-- alert() for displaying information
-- Arrays and objects to store and manage contacts
-
-Users interact with the system through a menu-driven interface in the browser.
+- Users can add and manage contacts through form inputs
+- Contacts are stored in an array of objects
+- The UI updates dynamically using DOM manipulation
+- Data is saved in LocalStorage, so it remains after page reload
 
 ---
 
@@ -37,39 +38,40 @@ Users interact with the system through a menu-driven interface in the browser.
 This project was built as part of my learning journey to:
 
 - Practice JavaScript fundamentals
-- Understand object and array manipulation
+- Understand DOM manipulation
+- Practice CRUD operations
+- Learn how to manage application state
 - Improve problem-solving skills
-- Build logic-based applications
+- Build a real user-facing application
 
 ---
 
 ## 🧠 Skills Practiced
 
 - JavaScript fundamentals
+- DOM manipulation
+- Event handling
 - Arrays and objects manipulation
 - CRUD operations (Create, Read, Delete)
 - Input validation with reusable functions
 - Error handling using try-catch
+- LocalStorage and JSON for data persistence
 - Problem-solving and logic building
-- User interaction using prompt() and alert()
 - Basic Git & GitHub workflow (branching, commits, pull requests)
 
 ---
 
 ## 🔮 Future Improvements
 
-- Add a graphical user interface (UI) using DOM
-- Store data persistently using localStorage and JSON
+- Improve UI with CSS (responsive design)
+- Add edit/update contact functionality  
 - Refactor code using higher-order functions (map, filter, find)
-- Improve UI/UX with better interaction and design
-- Add edit/update contact functionality
-- Make the application fully responsive
 
 ---
 
 ## 📷 Preview
 
-Currently runs in the browser using a prompt/alert interface.
+Simple and clean UI with form inputs and a dynamic contact list.
 
 ---
 
@@ -77,3 +79,9 @@ Currently runs in the browser using a prompt/alert interface.
 
 Iqra Amin
 Aspiring Frontend Developer
+
+---
+
+## 🔗 Live / Repository
+
+GitHub Repo: https://github.com/iqraamin054-code/contact-manager-js
