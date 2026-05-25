@@ -1,7 +1,6 @@
-# 📇 Contact Manager (Console-Based JavaScript App)
+# 📇 Contact Manager (JavaScript DOM Project)
 
-A simple Contact Manager built using JavaScript that allows users to manage contacts through a prompt-based interface.
-
+An interactive contact management application built using Vanilla JavaScript and DOM manipulation.
 ---
 
 ## 🚀 Features
