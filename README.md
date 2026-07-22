@@ -78,13 +78,6 @@ This project was built to strengthen my understanding of:
 
 ---
 
-## 📷 Preview
-
-<p align="center">
-  <img src="assets/preview.png" alt="Contact Management Preview" width="100%">
-</p>
-
----
 
 ## 👩‍💻 Author
 
