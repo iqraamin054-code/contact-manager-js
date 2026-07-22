@@ -78,7 +78,6 @@ This project was built to strengthen my understanding of:
 
 ---
 
-
 ## 👩‍💻 Author
 
 **Iqra Amin**
