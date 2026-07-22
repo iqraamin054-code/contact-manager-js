@@ -1,87 +1,100 @@
-# 📇 Contact Manager (JavaScript DOM Project)
+# 📇 Contact Management (JavaScript DOM Project)
 
-An interactive contact management application built using Vanilla JavaScript and DOM manipulation.
+<p align="center">
+  <img src="assets/banner.png" alt="Contact Management Banner" width="100%">
+</p>
+
+<p align="center">
+  An interactive Contact Management application built using <strong>Vanilla JavaScript</strong> and <strong>DOM manipulation</strong>.
+</p>
 
 ---
 
 ## 🚀 Features
 
-- Add new contacts
-- View all contacts
-- Delete existing contacts
-- Search contacts by name (case-insensitive + partial match)
-- Show all contacts after filtering
-- Input validation for user data
-- Data persistence using LocalStorage
+- ➕ Add new contacts
+- 📋 View all contacts
+- 🗑️ Delete existing contacts
+- 🔍 Search contacts by name (case-insensitive & partial match)
+- 📂 Show all contacts after filtering
+- ✅ Input validation
+- 💾 Persistent storage using LocalStorage
 
 ---
 
-## 🖥️ Tech Used
+## 🖥️ Tech Stack
 
-- HTML
-- JavaScript (Vanilla JS)
+- HTML5
+- Vanilla JavaScript (ES6)
+- DOM Manipulation
 - Browser LocalStorage
 
 ---
 
 ## 💡 How It Works
 
-- Users can add and manage contacts through form inputs
-- Contacts are stored in an array of objects
-- The UI updates dynamically using DOM manipulation
-- Data is saved in LocalStorage, so it remains after page reload
+- Add and manage contacts through an intuitive form.
+- Contacts are stored as JavaScript objects in an array.
+- The interface updates dynamically using DOM manipulation.
+- Data is automatically saved in LocalStorage, allowing contacts to persist after page reloads.
 
 ---
 
-## 📌 Project Purpose
+## 🎯 Project Purpose
 
-This project was built as part of my learning journey to:
+This project was built to strengthen my understanding of:
 
-- Practice JavaScript fundamentals
-- Understand DOM manipulation
-- Practice CRUD operations
-- Learn how to manage application state
-- Improve problem-solving skills
-- Build a real user-facing application
+- JavaScript fundamentals
+- DOM manipulation
+- CRUD operations
+- Application state management
+- Problem-solving
+- Building real-world interactive web applications
 
 ---
 
 ## 🧠 Skills Practiced
 
-- JavaScript fundamentals
-- DOM manipulation
-- Event handling
-- Arrays and objects manipulation
-- CRUD operations (Create, Read, Delete)
-- Input validation with reusable functions
-- Error handling using try-catch
-- LocalStorage and JSON for data persistence
-- Problem-solving and logic building
-- Basic Git & GitHub workflow (branching, commits, pull requests)
+- JavaScript Fundamentals
+- DOM Manipulation
+- Event Handling
+- Arrays & Objects
+- CRUD Operations
+- Input Validation
+- Error Handling (try...catch)
+- LocalStorage & JSON
+- Problem Solving
+- Git & GitHub Workflow
 
 ---
 
 ## 🔮 Future Improvements
 
-- Improve UI with CSS (responsive design)
-- Add edit/update contact functionality  
-- Refactor code using higher-order functions (map, filter, find)
+- 🎨 Modern responsive UI
+- ✏️ Edit and update contacts
+- 🔄 Refactor using higher-order functions (`map`, `filter`, `find`)
+- 📱 Better mobile experience
+- 🌙 Dark mode
 
 ---
 
 ## 📷 Preview
 
-Simple and clean UI with form inputs and a dynamic contact list.
+<p align="center">
+  <img src="assets/preview.png" alt="Contact Management Preview" width="100%">
+</p>
 
 ---
 
 ## 👩‍💻 Author
 
-Iqra Amin
+**Iqra Amin**
+
 Aspiring Frontend Developer
 
 ---
 
-## 🔗 Live / Repository
+## Demo & Repository
 
-GitHub Repo: https://github.com/iqraamin054-code/contact-manager-js
+🌐 **Repository:**  
+https://github.com/iqraamin054-code/contact-manager-js
